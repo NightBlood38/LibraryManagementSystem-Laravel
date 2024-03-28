@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('author', 30);
             $table->string('title', 100);
             $table->string('publisher', 50);
-            $table->integer('publishyear')->nullable()->default(date('Y'));
-            $table->integer('edition')->nullable()->default(1);
+            $table->integer('publishyear')->nullable()->default(date('Y'))->change()->min(1900);
+            $table->integer('edition')->nullable()->default(1)->change()->max(5);
             $table->integer('isbn');
             $table->boolean('borrowable')->default(true);
             $table->timestamps();
