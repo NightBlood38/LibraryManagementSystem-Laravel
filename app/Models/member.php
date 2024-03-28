@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class member extends Model
 {
-    protected $fillalble = ['nev','lakcim','tipus','emailcim'];
+    protected $fillable = ['nev','lakcim','tipus','emailcim'];
     use HasFactory;
+    // relationship: 1 member can do 1 or more loans
+    public function loans(){return this->hasMany(Loan::class);}
 }
