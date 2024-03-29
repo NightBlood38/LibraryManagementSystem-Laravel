@@ -11,7 +11,7 @@ class Loan extends Model
 {
     use HasFactory;
     // non-fillable fields: 
-    protected guarded = ['id','timestamps'];
+    protected $guarded = ['id','timestamps'];
     // relationship: a Loan can include 1 book
     public function book(){return $this->BelongsTo(Book::class);}
     // relationship: 1 loan transaction is executed by 1 member
