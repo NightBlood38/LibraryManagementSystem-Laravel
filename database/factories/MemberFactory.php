@@ -21,7 +21,7 @@ class MemberFactory extends Factory
     {
         $faker = \Faker\Factory::create('hu_HU');
         return [
-            'nev' => fake()->name(),
+            'nev' => $faker->name(),
             'lakcim' => $faker->address,
             'tipus' => $this->faker->randomElement(['eh','eo','mp','mm']),
             'emailcim' => fake()->unique()->safeEmail()
