@@ -14,7 +14,7 @@ class book extends Model
         'author',
         'title',
         'publisher',
-        'publisyear',
+        'publishyear',
         'edition',
         'isbn',
         'borrowable',
