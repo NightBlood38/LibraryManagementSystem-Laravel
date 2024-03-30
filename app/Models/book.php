@@ -17,7 +17,7 @@ class book extends Model
         'publishyear',
         'edition',
         'isbn',
-        'borrowable',
+        'loanable'
     ];
     // relationship: 1 book item can be loaned more times
     public function loans(){return $this->hasMany(Loan::class);}

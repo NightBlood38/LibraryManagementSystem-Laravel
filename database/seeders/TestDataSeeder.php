@@ -21,8 +21,7 @@ class TestDataSeeder extends Seeder
             'title' => 'Example Book 7',
             'author' => 'Author Name 6',
             'publisher' => 'Publisher 3',
-            'isbn' => '456',
-
+            'isbn' => '4567788413213'
         ]);
 
         Librarian::create([

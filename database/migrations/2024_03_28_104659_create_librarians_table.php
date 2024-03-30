@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('librarians', function (Blueprint $table) {
             $table->id();
-            $table->string('username',32)->unique()->nullable(false)->change()->min(4);
-            $table->string('password')->unique()->nullable(false)->change()->min(16);
+            $table->string('username',32)->unique()->nullable(false);
+            $table->string('password')->unique()->nullable(false);
             $table->rememberToken();
             $table->timestamps();
         });

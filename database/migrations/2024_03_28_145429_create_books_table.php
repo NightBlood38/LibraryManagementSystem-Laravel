@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -18,14 +17,14 @@ return new class extends Migration
             $table->string('author', 30);
             $table->string('title', 100);
             $table->string('publisher', 50);
-            $table->integer('publishyear')->nullable()->default(date('Y'))->change()->min(1900);
-            $table->integer('edition')->nullable()->default(1)->change()->max(5);
-            $table->integer('isbn');
-            $table->boolean('borrowable')->default(true);
+            $table->year('publishyear')->default(date('Y'))->min(1900)->max(now()->year);
+            $table->Integer('edition')->default(1)->min(1)->max(5);
+            $table->string('isbn', 13);
+            $table->boolean('loanable')->default(true);
             $table->timestamps();
+            $table->softDeletes();
         });
-
-    }
+            }
 
     public function down(): void
     {
