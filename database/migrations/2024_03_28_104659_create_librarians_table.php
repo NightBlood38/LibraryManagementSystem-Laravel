@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('librarians', function (Blueprint $table) {
             $table->id();
             $table->string('username',32)->unique()->nullable(false);
-            $table->string('password')->unique()->nullable(false);
+            $table->string('password')->nullable(false);
             $table->rememberToken();
             $table->timestamps();
         });
