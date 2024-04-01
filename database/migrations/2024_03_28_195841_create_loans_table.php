@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
+use Carbon\Carbon;
 return new class extends Migration
 {
     /**
@@ -19,8 +19,6 @@ return new class extends Migration
     $table->foreignId('member_id')->constrained()->onUpdate('cascade')->onDelete('cascade'); 
     // loan date default value: current date
     $table->date('loan_date')->default(now());
-    // loan deadline default value: current date + 15 days (mm membertype's deadline)
-    $table->date('deadline')->default(now()->addDays(15));
             $table->timestamps();
         });
     }

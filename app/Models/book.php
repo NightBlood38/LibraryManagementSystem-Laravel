@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 // import soft delete
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Loan;
 class book extends Model
 {
     use HasFactory,SoftDeletes;
