@@ -12,7 +12,6 @@ class LibrarianSeeder extends Seeder
      */
     public function run(): void
     {
-        Librarian::factory()->create();
-        // gives error due to the constraint that password should be unique, since LibrarianFactory generates the same password for each librarian: Librarian::factory(3)->create();
+        Librarian::factory(4)->create();
     }
 }
