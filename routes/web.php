@@ -43,3 +43,9 @@ Route::get('/first-loan-member', function () {
 Route::get('/first-loan-book', function () {
     dd(loan::first()->book);
 });
+Route::get('/book', function () {
+    return view('books');
+});
+Route::get('/author', function () {
+    return view('author');
+});
