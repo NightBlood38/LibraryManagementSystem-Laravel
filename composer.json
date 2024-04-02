@@ -20,6 +20,7 @@
     },
     "autoload": {
         "psr-4": {
+            "LaravelFrontendPresets\\BlackPreset\\": "presets/black/src",
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
@@ -27,6 +28,7 @@
     },
     "autoload-dev": {
         "psr-4": {
+            "LaravelFrontendPresets\\BlackPreset\\": "presets/black/src",
             "Tests\\": "tests/"
         }
     },
