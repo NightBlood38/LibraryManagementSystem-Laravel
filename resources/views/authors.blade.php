@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,8 +16,8 @@
     <nav>
         <div class="container">
             <ul>
-                <li><a href="welcome">Kezdőoldal</a></li>
-                <li><a href="books">Könyvek</a></li>
+                <li><a href="/">Kezdőoldal</a></li>
+                <li><a href="book">Könyvek</a></li>
                 <li><a href="#">Szerzők</a></li>
             </ul>
         </div>
