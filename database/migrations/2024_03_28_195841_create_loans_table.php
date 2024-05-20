@@ -19,6 +19,7 @@ return new class extends Migration
     $table->foreignId('member_id')->constrained()->onUpdate('cascade')->onDelete('cascade'); 
     // loan date default value: current date
     $table->date('loan_date')->default(now());
+    $table->date('return_date')->nullable();
             $table->timestamps();
         });
     }
