@@ -41,8 +41,6 @@ class LoanController extends Controller
         $loan->member_id = $request->input('member_id');
         $loan->book_id = $request->input('book_id');
         $loan->loan_date = Carbon::now();
-        $loan->return_date = $loan->calculate_loan_deadline();
-
         if ($loan->save()) {
             return redirect()->route('loans.index')->with('success', 'A könyv sikeresen kikölcsönözve.');
         } else {
@@ -84,12 +82,13 @@ public function edit($id)
     public function returnBook($id)
     {
         $loan = Loan::findOrFail($id);
+        $deadline = $loan->calculate_loan_deadline();
         $returnDate = Carbon::now();
-        if ($returnDate->gt($loan->return_date)) {
-            $daysOverdue = $returnDate->diffInDays($loan->return_date);
+        if ($returnDate->gt($deadline) ){
+            $daysOverdue = $returnDate->diffInDays($deadline);
             $loan->return_date = $returnDate;
             $loan->save();
-            return redirect()->back()->with('warning', 'A könyvet ' . $daysOverdue . ' nap késéssel hozták vissza.');
+            return redirect()->back()->with('error', 'A könyvet ' . $daysOverdue . ' nap késéssel hozták vissza.');
         }
         $loan->return_date = $returnDate;
         $loan->save();

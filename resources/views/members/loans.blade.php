@@ -23,7 +23,7 @@
                 <td>{{ $loan->loan_date }}</td>
                 <td>{{ $loan->return_date }}</td>
                 <td>
-                    <form action="{{ route('members.return_book', $loan->id) }}" method="POST">
+                    <form action="{{ route('loans.return_book', $loan->id) }}" method="POST">
                         @csrf
                         <button type="submit" class="btn btn-primary">Visszavétel</button>
                     </form>

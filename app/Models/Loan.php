@@ -53,7 +53,7 @@ class Loan extends Model
         $bring_back = $this->calculate_loan_deadline();
         return $this->loan_date < $bring_back && Loan::where('member_id', $member->id)->count()< $loan_limit;
     }
-    // override save() method of models (check data before save)
+    // override save() method of models (check data before save), set return date
     public function save(array $options = []){
         if (!$this->is_new_loan_possible()) {return false;}
         return parent::save($options);

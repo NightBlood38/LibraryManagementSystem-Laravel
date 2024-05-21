@@ -8,7 +8,8 @@ use App\Models\member;
 use App\Models\Loan;
 use App\Models\librarian;
 use App\Http\Controllers\bookController;
-use App\Http\Controllers\MemberController;
+use App\Http\Controllers\memberController;
+use App\Http\Controllers\LoanController;
 // homepage route: http://localhost:8000/
 Route::get('/', function () {
     return view('welcome');
@@ -51,7 +52,10 @@ Route::get('/book', function () {
 Route::get('/author', function () {
     return view('authors');
 });
-// crud routes for book, member
+// crud routes for book, member, loan
 Route::resource('books', bookController::class);
 Route::resource('members', memberController::class);
-Route::get('members/{id}/loans', [MemberController::class, 'listLoans'])->name('members.loans');
+Route::resource('loans', LoanController::class);
+// plus routes for member's loans, book return
+Route::get('members/{id}/loans', [memberController::class, 'listLoans'])->name('members.loans');
+Route::post('/loans/returnBook/{id}', [loanController::class, 'returnBook'])->name('loans.return_book');
