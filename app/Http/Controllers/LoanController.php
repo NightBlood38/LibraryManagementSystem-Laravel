@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Loan;
-use App\Models\book;
-use App\Models\member;
+use App\Models\Book;
+use App\Models\Member;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -18,8 +18,8 @@ class LoanController extends Controller
 
     public function create()
     {
-        $members = member::all();
-        $books = book::where('loanable', true)->get();
+        $members = Member::all();
+        $books = Book::where('loanable', true)->get();
         return view('loans.create', compact('members', 'books'));
     }
 
@@ -30,8 +30,8 @@ class LoanController extends Controller
             'book_id' => 'required|exists:books,id',
         ]);
 
-        $member = member::findOrFail($request->input('member_id'));
-        $book = book::findOrFail($request->input('book_id'));
+        $member = Member::findOrFail($request->input('member_id'));
+        $book = Book::findOrFail($request->input('book_id'));
 
         if (!$book->loanable) {
             return redirect()->back()->with('error', 'A kért könyv nem kölcsönözhető.');
@@ -50,8 +50,8 @@ class LoanController extends Controller
 public function edit($id)
     {
         $loan = Loan::findOrFail($id);
-        $members = member::all();
-        $books = book::all();
+        $members = Member::all();
+        $books = Book::all();
         return view('loans.edit', compact('loan', 'members', 'books'));
     }
 
@@ -79,7 +79,7 @@ public function edit($id)
         return redirect()->route('loans.index')->with('success', 'A külcsönzés sikeresen törölve.');
     }
 
-    public function returnbook($id)
+    public function returnBook($id)
     {
         $loan = Loan::findOrFail($id);
         $deadline = $loan->calculate_loan_deadline();
