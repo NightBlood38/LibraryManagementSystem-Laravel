@@ -10,10 +10,6 @@ use App\Models\librarian;
 use App\Http\Controllers\bookController;
 use App\Http\Controllers\memberController;
 use App\Http\Controllers\LoanController;
-// homepage route: http://localhost:8000/
-Route::get('/', function () {
-    return view('welcome');
-});
 // get librarians data (http://localhost:8000/librarians)
 Route::get('/test-librarians', function () {
     dd(Librarian::all());
@@ -59,3 +55,25 @@ Route::resource('loans', LoanController::class);
 // plus routes for member's loans, book return
 Route::get('members/{id}/loans', [memberController::class, 'listLoans'])->name('members.loans');
 Route::post('/loans/returnBook/{id}', [loanController::class, 'returnBook'])->name('loans.return_book');
+Auth::routes();
+
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+Route::get('/', function () {
+    return redirect('/home');
+});
+
+// authenticated routes
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/books', [BookController::class, 'index'])->name('books.index');
+    Route::resource('books', BookController::class);
+    Route::resource('members', MemberController::class);
+    Route::resource('loans', LoanController::class);
+    Route::get('members/{id}/loans', [MemberController::class, 'listLoans'])->name('members.loans');
+    Route::post('loans/returnBook/{id}', [LoanController::class, 'returnBook'])->name('loans.return_book');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/home', [BookController::class, 'index'])->name('home');
+});
+//logout route
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
